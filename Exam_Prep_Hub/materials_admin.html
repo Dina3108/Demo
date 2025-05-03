@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Uploaded Materials</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="donate.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Bangers&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Bilbo+Swash+Caps&family=Finger+Paint&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Handlee&family=Jockey+One&family=Kaushan+Script&family=Kavoon&family=Kite+One&family=Luckiest+Guy&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=New+Amsterdam&family=Pangolin&family=Patrick+Hand+SC&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Saira:ital,wght@0,100..900;1,100..900&family=Salsa&family=Squada+One&family=Square+Peg&family=Tangerine:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Vibur&family=Waiting+for+the+Sunrise&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Optional: styling the delete button */
+      .delete-btn {
+        background-color: #ff4d4d;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        margin-top: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .delete-btn:hover {
+        background-color: #e60000;
+      }
+
+      /* Optional: better card layout */
+      .material-card {
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin: 12px 0;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Uploaded Materials</h1>
+      <div id="materialsList"></div>
+      <a href="upload.html" class="back-link">Back to Upload</a>
+    </div>
+
+    <script>
+      const materialsList = document.getElementById("materialsList");
+      let materials = JSON.parse(localStorage.getItem("materials")) || [];
+
+      function renderMaterials() {
+        materialsList.innerHTML = "";
+
+        if (materials.length === 0) {
+          materialsList.innerHTML = "<p>No materials uploaded yet.</p>";
+        } else {
+          materials.forEach((material, index) => {
+            const card = document.createElement("div");
+            card.className = "material-card";
+            card.innerHTML = `
+              <h3>${material.courseTitle} (${material.courseCode})</h3>
+              <p><strong>Department:</strong> ${material.department}</p>
+              <p><strong>Semester:</strong> ${material.semester}</p>
+              <a href="${material.fileContent}" download="${material.fileName}">Download Document</a>
+              <button class="delete-btn" data-index="${index}">Delete</button>
+            `;
+            materialsList.appendChild(card);
+          });
+
+          // Attach delete button event listeners
+          const deleteButtons = document.querySelectorAll(".delete-btn");
+          deleteButtons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const index = e.target.getAttribute("data-index");
+              deleteMaterial(index);
+            });
+          });
+        }
+      }
+
+      function deleteMaterial(index) {
+        if (confirm("Are you sure you want to delete this material?")) {
+          materials.splice(index, 1); // Remove material from array
+          localStorage.setItem("materials", JSON.stringify(materials)); // Update localStorage
+          renderMaterials(); // Re-render materials
+        }
+      }
+      // Initial rendering
+      renderMaterials();
+    </script>
+  </body>
+</html>

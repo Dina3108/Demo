@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  font-family: Fira Sans Condensed, arial;
+  background-color: #a7f464;
+}
+.mhs-title-p {
+  font-size: 30px;
+  color: rgb(7, 137, 243);
+  font-weight: 500;
+}
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(7, 137, 243);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.view-reviews,
+.back-home {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-family: Fira Sans Condensed, arial;
+}
+
+.view-reviews:hover,
+.back-home:hover {
+  text-decoration: underline;
+}
+
+.review-item {
+  background: #e9ecef;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: Fira Sans Condensed, arial;
+}
+
+.review-item h3 {
+  margin-top: 0;
+  font-family: Fira Sans Condensed, arial;
+}
+
+.review-item small {
+  display: block;
+  margin-top: 10px;
+  color: #555;
+  font-family: Fira Sans Condensed, arial;
+}
