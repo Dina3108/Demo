@@ -1,0 +1,105 @@
+body {
+  font-family: Fira Sans Condensed, Arial;
+}
+.login-div {
+  display: flex;
+}
+.login-image {
+  margin: 50px;
+  width: 500px;
+}
+.log-p-div {
+  flex: 1;
+}
+.log-title-p {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 40px;
+  color: rgb(243, 159, 5);
+  font-weight: 600;
+  color: blue;
+}
+.log-input-top-p {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+  color: #05f42d;
+  font-weight: 600;
+}
+.log-pass-div {
+  border: solid 1px rgb(183, 178, 178);
+  box-shadow: 0.15px 0.15px 0.15px 0.25px rgb(195, 187, 187);
+  height: 400px;
+  border-radius: 50px;
+  width: 500px;
+  margin-left: 50px;
+}
+.roll-no-input {
+  height: 50px;
+  width: 350px;
+  margin: 40px;
+  font-size: 20px;
+  border-radius: 25px;
+  border: solid 1px black;
+  border: solid 1px rgb(183, 178, 178);
+  box-shadow: 0.15px 0.15px 0.15px 0.25px rgb(195, 187, 187);
+  color: brown;
+  color: blue;
+}
+.roll-no-input:placeholder-shown {
+  padding-left: 20px;
+  font-family: Fira Sans Condensed, Arial;
+  color: brown;
+  color: blue;
+}
+.roll-no-input::placeholder {
+  color: rgba(165, 42, 42, 0.582);
+  color: blue;
+}
+.password-input {
+  height: 50px;
+  width: 350px;
+  margin: 40px;
+  margin-top: 10px;
+  font-size: 20px;
+  border-radius: 25px;
+  border: solid 1px black;
+  border: solid 1px rgb(183, 178, 178);
+  box-shadow: 0.15px 0.15px 0.15px 0.25px rgb(195, 187, 187);
+}
+.password-input:placeholder-shown {
+  padding-left: 20px;
+  font-family: Fira Sans Condensed, Arial;
+  color: brown;
+  color: blue;
+}
+.password-input::placeholder {
+  color: rgba(165, 42, 42, 0.582);
+  color: blue;
+}
+.password-hint {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 10px;
+  color: rgb(243, 159, 5);
+  font-weight: 600;
+  color: #05f42d;
+}
+.login-button {
+  padding: 20px;
+  width: 100px;
+  margin-left: 200px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: none;
+  font-family: Fira Sans Condensed, Arial;
+  background-color: blue;
+  color: rgb(248, 242, 247);
+  font-weight: 700;
+  transition: background-color, color 0.15s;
+}
+.login-button:hover {
+  color: blue;
+  background-color: rgb(234, 244, 244);
+  border: solid 0.5px black;
+}

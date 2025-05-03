@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>All Requests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Bangers&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Bilbo+Swash+Caps&family=Finger+Paint&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Handlee&family=Jockey+One&family=Kaushan+Script&family=Kavoon&family=Kite+One&family=Luckiest+Guy&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=New+Amsterdam&family=Pangolin&family=Patrick+Hand+SC&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Saira:ital,wght@0,100..900;1,100..900&family=Salsa&family=Squada+One&family=Square+Peg&family=Tangerine:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Vibur&family=Waiting+for+the+Sunrise&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+        font-family: Fira Sans Condensed, arial;
+        background-color: #a7f464;
+      }
+      .disclaimer {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .card {
+        padding: 20px;
+        border: 1px solid #ccc;
+        width: 400px;
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+      .info {
+        margin-bottom: 10px;
+      }
+      .accept-btn {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+      }
+      .accept-btn:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="color: rgb(7, 137, 243)">Pending Requests</h2>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong><br /><br />
+      Before accepting the request, kindly verify that:
+      <ol>
+        <li>Your skills match the student's requirements.</li>
+        <li>The student's skills align with your requirements.</li>
+      </ol>
+    </div>
+
+    <div class="container" id="requestsContainer">
+      <!-- Requests will be loaded here -->
+    </div>
+
+    <script>
+      const container = document.getElementById("requestsContainer");
+      const requests = JSON.parse(localStorage.getItem("formDataList")) || [];
+
+      function renderRequests() {
+        container.innerHTML = "";
+
+        if (requests.length === 0) {
+          container.innerHTML = "<p>No pending requests.</p>";
+          return;
+        }
+
+        requests.forEach((data, index) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.setAttribute("data-index", index);
+
+          card.innerHTML = `
+        <div class="info"><strong>Name:</strong> ${data.name}</div>
+        <div class="info"><strong>Roll Number:</strong> ${data.roll}</div>
+        <div class="info"><strong>Department:</strong> ${data.department}</div>
+        <div class="info"><strong>Year:</strong> ${data.year}</div>
+        <div class="info"><strong>My Skill Set:</strong> ${data.mySkillSet}</div>
+        <div class="info"><strong>Required Skill Set:</strong> ${data.requiredSkillSet}</div>
+        <div class="info"><strong>Room No:</strong> ${data.room}</div>
+        <button class="accept-btn" onclick="acceptRequest(this, ${index})">
+          ✅ Accept Request
+        </button>
+      `;
+
+          container.appendChild(card);
+        });
+      }
+
+      function acceptRequest(button, index) {
+        button.innerHTML = "✅ Request Accepted";
+        button.disabled = true;
+        button.style.backgroundColor = "#888";
+      }
+
+      renderRequests();
+      acceptBtn.addEventListener("click", function () {
+        const formDataList =
+          JSON.parse(localStorage.getItem("formDataList")) || [];
+        const index = parseInt(acceptBtn.getAttribute("data-index"));
+
+        const acceptorName = prompt("Enter your name to accept this request:"); // Ask who is accepting
+        if (!acceptorName) {
+          alert("You must enter your name!");
+          return;
+        }
+
+        formDataList[index].acceptedBy = acceptorName;
+
+        localStorage.setItem("formDataList", JSON.stringify(formDataList));
+
+        acceptBtn.innerHTML = "Request Accepted ✓";
+        acceptBtn.disabled = true;
+
+        card.remove(); // Optionally remove the card after accepted
+      });
+    </script>
+  </body>
+</html>
